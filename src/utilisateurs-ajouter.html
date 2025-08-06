@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <script src="./js/header.js" defer></script>
+    <script src="./js/footer.js" defer></script>
+    <script src="./js/main.js" defer></script>
+    <title>roles</title>
+</head>
+<body>  
+
+    <main id="home">
+
+        <form action="post">
+             <fieldset>
+                <legend>Ajout Utilisateurs</legend>
+
+                <label for="fname">Ajouter un nom *</label>
+                <input type="text" id="fname" required>
+                <label for="lname">Ajouter un prenom *</label>
+                <input type="text" id="lname" required>
+                <label for="email">Ajouter un Email *</label>
+                <input type="email" id="email" required>
+
+            </fieldset> 
+            
+            <fieldset>
+                <legend>Ajouter un Role</legend>
+                <label for="role">Choisissez un role</label>
+                <select name="role" id="role">
+                    <option value=""> -- Sélectionnez un role --</option>
+                    <option value="inviter">Inviter</option>
+                    <option value="usager">Usager</option>
+                    <option value="encadrant">Encadrant</option>
+                    <option value="administrateur">Administrateur</option>
+                </select>
+            </fieldset>
+
+        </form>
+
+        <div id="button">
+            <button id="addUtil" type="button" onclick="addUtil()">Ajouter</button>
+            <button id="delUtil" type="button" onclick="delUtil()">Supprimer</button>
+            <button id="reset" type="reset" >Reset</button>
+        </div>
+
+            
+            <div id="result"></div>
+
+
+        </main>
+
+    <footer id="footer"></footer>    
+</body>
+</html>

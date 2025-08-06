@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <script src="./js/header.js" defer></script>
+    <script src="./js/footer.js" defer></script>
+    <script src="./js/main.js" defer></script>
+    <title>Ajout de roles</title>
+</head>
+<body>           
+
+        <main id="home">
+
+            <h2>Ajouter un role :</h2>
+            <section class="form">
+
+                <fieldset>
+                    <legend>Ajout de role</legend>
+                    <label for="nrole">Inscrivez un role</label>
+                    <input type="text" id="nrole">
+                    <label for="descrip">Ajouter une description</label>
+                    <input type="text" id="descrip">
+
+                </fieldset>
+
+                <div id="button">
+                    <button id="addItem" type="button" onclick="addRole()">Ajouter</button>
+                </div>
+
+            </section>
+
+            <div id="result">ici</div>
+        </main>
+
+    <footer id="footer"></footer>    
+</body>
+</html>
