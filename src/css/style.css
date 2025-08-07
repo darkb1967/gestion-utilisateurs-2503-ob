@@ -157,14 +157,14 @@ select{
 
 #button{
     margin-top: 2rem;
-    margin-left: 50rem;
-    gap: 5rem;
+    margin-left: 40rem;
+    gap: 8rem;
 }
 button{
     display: inline-block;
     background-color: var(--crm-title-header);
     color: white;
-    width: 10%;
+    width: 20%;
     height: 3rem;
 
 }

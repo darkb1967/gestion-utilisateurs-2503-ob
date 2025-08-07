@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/css/style.css">
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/header.js" defer></script>
-    <script src="./js/footer.js" defer></script>
+    <script src="./js/headerFooter.js" defer></script>
     <script src="./js/main.js" defer></script>
     <title>roles</title>
 </head>
@@ -16,6 +15,29 @@
 
             <h2>Profil utilisateur :</h2>
 
+            <form action="post">
+
+             <fieldset>
+                <legend> Utilisateurs</legend>
+
+                <label for="fname">Nom :</label>
+                <input type="text" id="fname">
+                <label for="lname">Prénom :</label>
+                <input type="text" id="lname">
+                <label for="email">Email :</label>
+                <input type="text" id="email">
+                <label for="role">Role :</label>
+                <input type="text" id="role">
+
+            </fieldset> 
+
+
+            </form>
+
+            <div id="button">
+                <button id="retour" type="button" onclick="retour()">Retour</button>
+                <button id="suivant" type="button" onclick="suivant()">Suivant</button>
+            </div>
 
         </main>
 
