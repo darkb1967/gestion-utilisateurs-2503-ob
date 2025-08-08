@@ -20,23 +20,23 @@
              <fieldset>
                 <legend> Utilisateurs</legend>
 
-                <label for="fname">Nom :</label>
-                <input type="text" id="fname">
-                <label for="lname">Prénom :</label>
-                <input type="text" id="lname">
+                <label for="pfname">Nom :</label>
+                <input type="text" id="pfname">
+                <label for="plname">Prénom :</label>
+                <input type="text" id="plname">
                 <label for="email">Email :</label>
-                <input type="text" id="email">
-                <label for="role">Role :</label>
-                <input type="text" id="role">
+                <input type="text" id="pemail">
+                <label for="prole">Role :</label>
+                <input type="text" id="prole">
 
             </fieldset> 
 
 
             </form>
 
-            <div id="button">
-                <button id="retour" type="button" onclick="retour()">Retour</button>
-                <button id="suivant" type="button" onclick="suivant()">Suivant</button>
+            <div id="button" class="profilButton">
+                <button id="retour" type="button" value="decrement" onclick="retour()">Retour</button>
+                <button id="suivant" type="button" value="increment" onclick="suivant()">Suivant</button>
             </div>
 
         </main>

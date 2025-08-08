@@ -11,6 +11,15 @@ const descrip = document.getElementById('descrip');
 // variable envois résultat dans une variable
 const result = document.getElementById('result');
 
+// icrementation element profil
+let element=0;
+
+// variable de la page profil
+const inputNom = document.getElementById('pfname');
+const inputPrenom = document.getElementById('plname');
+const inputEmail = document.getElementById('pemail');
+const inputRole = document.getElementById('prole');
+
 // table json dans fichier js
 const jsonData =[
     {   "Role":"Invité",
@@ -127,24 +136,11 @@ function addUtil(){
     .then(res => res.json())
     .then(utilisateurs => {
 
-        /*
-        //affiche la liste
-        utilisateurs.forEach(post => {
-        //result.insertAdjacentHTML('beforeend', `<li>Role : ${post.Role} Description : ${post.Description}</li>`)
-        result.insertAdjacentHTML( 'beforeend',"<li> Nom : " + post.Nom + " </li>");
-        result.insertAdjacentHTML( 'beforeend',"<li> Prénom : " + post.Prenom + " </li>");
-        result.insertAdjacentHTML( 'beforeend',"<li> Email : " + post.Email + " </li>");
-        result.insertAdjacentHTML( 'beforeend',"<li> Role : " + post.Role + " </li>");
-        });
-
-        */
-
-
         // variable d'ajout role et sa description
-        const inputNom = document.getElementById('fname');
-        const inputPrenom = document.getElementById('lname');
-        const inputEmail = document.getElementById('email');
-        const inputRole = document.getElementById('role');
+        const inputNom = document.getElementById('ufname');
+        const inputPrenom = document.getElementById('ulname');
+        const inputEmail = document.getElementById('uemail');
+        const inputRole = document.getElementById('urole');
 
         let champNom = inputNom.value.trim();
         let champPrenom = inputPrenom.value.trim();
@@ -152,14 +148,93 @@ function addUtil(){
         let champRole = inputRole.value.trim();
 
         let addUtiltemp = { Nom: champNom, Prenom: champPrenom, Email: champEmail, Role: champRole };
-        console.log(addUtiltemp);
         
         // Ajoute l'objet au tableau 'data'
         utilisateurs.push(addUtiltemp);
 
-        result.insertAdjacentHTML( 'beforeend',"<li> Nom : " + utilisateurs.Nom + " </li>");
+        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
+        console.log("last=",last);
+
+        result.insertAdjacentHTML( 'beforeend',"<li> Nom : " + utilisateurs[last].Nom + " </li>");
+        result.insertAdjacentHTML( 'beforeend',"<li> Prénom : " + utilisateurs[last].Prenom + " </li>");
+        result.insertAdjacentHTML( 'beforeend',"<li> Email : " + utilisateurs[last].Email + " </li>");
+        result.insertAdjacentHTML( 'beforeend',"<li> Role : " + utilisateurs[last].Role + " </li>");
 
     });
 
 }
 
+function suivant(){
+
+    // fetch le fichier utilisateur dans data
+    fetch('./data/utilisateurs.json')
+    .then(res => res.json())
+    .then(utilisateurs => {
+
+        inputNom.value = utilisateurs[element].Nom;
+        inputPrenom.value = utilisateurs[element].Prenom;
+        inputEmail.value = utilisateurs[element].Email;
+        inputRole.value = utilisateurs[element].Role;
+
+        element++;
+
+        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
+        console.log(last)
+        if(element > last){
+            const temp=element;
+            alert(" dernier entrée !")
+        }
+
+    });
+}
+
+function retour(){
+
+    // fetch le fichier utilisateur dans data
+    fetch('./data/utilisateurs.json')
+    .then(res => res.json())
+    .then(utilisateurs => {
+
+        inputNom.value = utilisateurs[element].Nom;
+        inputPrenom.value = utilisateurs[element].Prenom;
+        inputEmail.value = utilisateurs[element].Email;
+        inputRole.value = utilisateurs[element].Role;
+
+        element--;
+
+        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
+        if(element < 0){
+            element = 0;
+        }
+
+    });
+
+    /*
+    element--;
+    if(element < 0){
+        element = 0;
+    }
+    */
+}
+
+/*
+const profilButton=document.querySelector(".profilbutton");
+
+profilButton.addEventListener('click', profilList);
+
+function profilList(event){
+    let buttonvalue = document.getElementById("suivant").value;
+
+    console.log("bouton cliquééééééééé");
+    console.log(buttonvalue);
+
+    if(buttonvalue === "increment"){
+        console.log("-------- increment -----------");
+    } else {
+        console.log("--------- decrement ----------");
+    }
+ 
+
+}
+    
+*/
