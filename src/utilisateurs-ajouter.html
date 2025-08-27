@@ -12,23 +12,23 @@
 
     <main id="home">
 
-        <form action="post">
+        <form action="get" onsubmit="addUtil()">
              <fieldset>
                 <legend>Ajout Utilisateurs</legend>
 
-                <label for="ufname">Ajouter un nom *</label>
-                <input type="text" id="ufname" required>
-                <label for="lname">Ajouter un prenom *</label>
-                <input type="text" id="ulname" required>
-                <label for="uemail">Ajouter un Email *</label>
-                <input type="email" id="uemail" required>
+                <label for="ufname">Nom *</label>
+                <input type="text" id="ufname" pattern="[A-Za-z]{3,}" required><span id="ufname-error" style="color:red;"></span>
+                <label for="lname">Prénom *</label>
+                <input type="text" id="ulname" pattern="[A-Za-z]{3,}" required>
+                <label for="uemail">Email *</label>
+                <input type="email" id="uemail" pattern="[\w\.-]+@[\w]+\.[a-z]+" required>
 
             </fieldset> 
             
             <fieldset>
-                <legend>Ajouter un Role</legend>
-                <label for="urole">Choisissez un role</label>
-                <select name="urole" id="urole">
+                <legend>Ajout de Role</legend>
+                <label for="urole">Role *</label>
+                <select name="urole" id="urole" required>
                     <option value=""> -- Sélectionnez un role --</option>
                     <option value="inviter">Inviter</option>
                     <option value="usager">Usager</option>
@@ -37,13 +37,13 @@
                 </select>
             </fieldset>
 
-        </form>
-
         <div id="button">
-            <button id="addUtil" type="button" onclick="addUtil()">Ajouter</button>
+            <button id="addUtil" type="submit">Ajouter</button>
             <button id="delUtil" type="button" onclick="delUtil()">Supprimer</button>
             <button id="reset" type="reset" >Reset</button>
         </div>
+
+        </form>
 
             
             <div id="result"></div>

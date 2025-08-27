@@ -14,15 +14,17 @@
 
             <h2>Ajouter un role :</h2>
             <section class="form">
+                
+                <form action="post">
+                    <fieldset>
+                        <legend>Ajout de role</legend>
+                        <label for="nrole">Inscrivez un role</label>
+                        <input type="text" id="nrole">
+                        <label for="descrip">Ajouter une description</label>
+                        <input type="text" id="descrip">
 
-                <fieldset>
-                    <legend>Ajout de role</legend>
-                    <label for="nrole">Inscrivez un role</label>
-                    <input type="text" id="nrole">
-                    <label for="descrip">Ajouter une description</label>
-                    <input type="text" id="descrip">
-
-                </fieldset>
+                    </fieldset>
+                </form>
 
                 <div id="button">
                     <button id="afficherliste" type="button" onclick="afficherListePageRole()">Afficher liste</button>

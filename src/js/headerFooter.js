@@ -33,8 +33,7 @@ function createHeader(){
       { href: './roles-ajouter.html', text: 'Ajouter un role' },
       { href: './utilisateurs.html', text: 'Utilisateurs' },
       { href: './utilisateurs-ajouter.html', text: 'Ajouter un utilisateur' },
-      { href: './profil.html', text: 'Profil' },
-      { href: './connexion.html', text: 'Log in' }
+      { href: './profil.html', text: 'Profil' }
     ];
 
     // Créer chaque lien et les ajouter à la barre de navigation

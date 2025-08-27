@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/css/style.css">
-    <link rel="stylesheet" href="./css/style.css">
     <script src="./js/headerFooter.js" defer></script>
     <script src="./js/main.js" defer></script>
     <title>roles</title>
@@ -13,12 +12,23 @@
 
         <main id="home">
 
-            <h2>Profil utilisateur :</h2>
+            <h2>Profil utilisateurs :</h2>
 
             <form action="post">
+            
+            <fieldset>
+                <legend>Rechercher</legend>
+                <label for="search">Rechercher un utilisateur</label>
+                <input type="text" id="search">
+            </fieldset>
+
+            <div id="button" class="profilButton">
+            <button id="searchvalid" type="button"  onclick="search()">Rechercher</button>
+            </div>
 
              <fieldset>
-                <legend> Utilisateurs</legend>
+                                
+                <legend> Utilisateurs <span id="fieldnumber"> 0</span></legend>
 
                 <label for="pfname">Nom :</label>
                 <input type="text" id="pfname">
@@ -35,8 +45,8 @@
             </form>
 
             <div id="button" class="profilButton">
-                <button id="retour" type="button" value="decrement" onclick="retour()">Retour</button>
-                <button id="suivant" type="button" value="increment" onclick="suivant()">Suivant</button>
+                <button id="decrement" type="button" value=0 onclick="decrement()">Retour</button>
+                <button id="increment" type="button" value=0 onclick="increment()">Suivant</button>
             </div>
 
         </main>

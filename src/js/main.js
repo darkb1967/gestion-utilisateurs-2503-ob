@@ -1,8 +1,18 @@
 //import "./header";
 //import {createFooter} from "./footer";
 
+// icrementation element profil
+let element=0;
+
+// variable de la page profil
+const fieldNumber = document.getElementById('fieldnumber');
+const inputNom = document.getElementById('pfname');
+const inputPrenom = document.getElementById('plname');
+const inputEmail = document.getElementById('pemail');
+const inputRole = document.getElementById('prole');
+
 /* variable tableau classique avec json */
-const tableBody = document.querySelector("#tablejson tbody");
+const tableBody = document.querySelector("#tablejson #tbody");
 
 // variable d'ajout role et sa description
 const nrole = document.getElementById('nrole');
@@ -11,14 +21,6 @@ const descrip = document.getElementById('descrip');
 // variable envois résultat dans une variable
 const result = document.getElementById('result');
 
-// icrementation element profil
-let element=0;
-
-// variable de la page profil
-const inputNom = document.getElementById('pfname');
-const inputPrenom = document.getElementById('plname');
-const inputEmail = document.getElementById('pemail');
-const inputRole = document.getElementById('prole');
 
 // table json dans fichier js
 const jsonData =[
@@ -107,7 +109,7 @@ function boutonAjouterRoleDescrip(){
 
     if (newRoleValue && newDescripValue) {
             // Crée un nouvel objet avec le rôle et la description
-            const roletemp = { Role: newRoleValue, Description: newDescripValue };
+            let roletemp = { Role: newRoleValue, Description: newDescripValue };
 
             // Ajoute l'objet au tableau 'role'
             role.push(roletemp);
@@ -126,7 +128,9 @@ function boutonAjouterRoleDescrip(){
    
 }
 
-function addUtil(){
+function addUtil(event){
+
+    event.preventDefault();
 
     //reset la liste
     result.innerHTML = '';
@@ -137,7 +141,8 @@ function addUtil(){
     .then(utilisateurs => {
 
         // variable d'ajout role et sa description
-        const inputNom = document.getElementById('ufname');
+        const inputNom = document.getElementById('ufname');   
+        const inputNomError = document.getElementById('ufname-error');
         const inputPrenom = document.getElementById('ulname');
         const inputEmail = document.getElementById('uemail');
         const inputRole = document.getElementById('urole');
@@ -147,75 +152,107 @@ function addUtil(){
         let champEmail = inputEmail.value.trim();
         let champRole = inputRole.value.trim();
 
-        let addUtiltemp = { Nom: champNom, Prenom: champPrenom, Email: champEmail, Role: champRole };
+        //verification des champs
+        const isNameValid = validateName(champNom);
+        const isPrenomValid = validateName(champPrenom);
+        const isEmailValid = validateEmail(champEmail);
+
+        if(!isNameValid) {
+            inputNomError.textContent = "Le nom est invalide" ;
+        }else{
+            inputNomError.textContent = '';
+        };
+
+        if(isNameValid && isPrenomValid && isEmailValid) {
+            
+            let addUtiltemp = { Nom: champNom, Prenom: champPrenom, Email: champEmail, Role: champRole };
         
-        // Ajoute l'objet au tableau 'data'
-        utilisateurs.push(addUtiltemp);
+            // Ajoute l'objet au tableau 'data'
+            utilisateurs.push(addUtiltemp);
 
-        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
-        console.log("last=",last);
+            let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
+            console.log("last=",last);
 
-        result.insertAdjacentHTML( 'beforeend',"<li> Nom : " + utilisateurs[last].Nom + " </li>");
-        result.insertAdjacentHTML( 'beforeend',"<li> Prénom : " + utilisateurs[last].Prenom + " </li>");
-        result.insertAdjacentHTML( 'beforeend',"<li> Email : " + utilisateurs[last].Email + " </li>");
-        result.insertAdjacentHTML( 'beforeend',"<li> Role : " + utilisateurs[last].Role + " </li>");
+            result.insertAdjacentHTML( 'beforeend',"<li> Nom : " + utilisateurs[last].Nom + " </li>");
+            result.insertAdjacentHTML( 'beforeend',"<li> Prénom : " + utilisateurs[last].Prenom + " </li>");
+            result.insertAdjacentHTML( 'beforeend',"<li> Email : " + utilisateurs[last].Email + " </li>");
+            result.insertAdjacentHTML( 'beforeend',"<li> Role : " + utilisateurs[last].Role + " </li>");
+
+            alert('données enregistrés !');
+        } else {
+
+        }
+
 
     });
 
 }
 
-function suivant(){
+function validateName(_name){
+    let regexName = /^[A-Za-z]{3,}$/;
+    return regexName.test(_name);
+}
+
+function validateEmail(_email){
+    let regexEmail = /^[\w\.-]+@[\w]+\.[a-z]+$/;
+    return regexEmail.test(_email);
+}
+
+function increment(){
 
     // fetch le fichier utilisateur dans data
     fetch('./data/utilisateurs.json')
     .then(res => res.json())
     .then(utilisateurs => {
 
+        fieldNumber.innerHTML = element;
         inputNom.value = utilisateurs[element].Nom;
         inputPrenom.value = utilisateurs[element].Prenom;
         inputEmail.value = utilisateurs[element].Email;
         inputRole.value = utilisateurs[element].Role;
 
+        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length -1];
+
+        // incrementation du tableau !!
         element++;
 
-        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
-        console.log(last)
         if(element > last){
-            const temp=element;
-            alert(" dernier entrée !")
+            fieldNumber.innerHTML = "dernier élément";
+            element=3;
         }
 
     });
 }
 
-function retour(){
+
+function decrement(){
 
     // fetch le fichier utilisateur dans data
     fetch('./data/utilisateurs.json')
     .then(res => res.json())
     .then(utilisateurs => {
 
+        fieldNumber.innerHTML = element;
         inputNom.value = utilisateurs[element].Nom;
         inputPrenom.value = utilisateurs[element].Prenom;
         inputEmail.value = utilisateurs[element].Email;
         inputRole.value = utilisateurs[element].Role;
 
+        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
+
+        // decrementation du tableau !!
         element--;
 
-        let last = Object.keys(utilisateurs)[Object.keys(utilisateurs).length - 1];
         if(element < 0){
-            element = 0;
+            fieldNumber.innerHTML = "début de liste";
+            element=0;
         }
 
     });
 
-    /*
-    element--;
-    if(element < 0){
-        element = 0;
-    }
-    */
+
 }
+
 
 /*
 const profilButton=document.querySelector(".profilbutton");
