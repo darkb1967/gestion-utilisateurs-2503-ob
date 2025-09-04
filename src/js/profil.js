@@ -50,16 +50,8 @@ searchButton.addEventListener('click', function(event){
     console.log("Object.entries = "+Object.entries(utilisateurs));
     console.log("--------------------------------------");
 
-    // filterText function
-    const filterText =(arr, requete) => {
-        return arr.filter(
-            (el) => el.indexOf(requete) !==-1,
-        );
-    };
-    console.log("filterText(utilisateurs, rsearch) = "+filterText(utilisateurs, rsearch));
-    console.log("--------------------------------------");
-
-    //..  #todo: startWith()
+    
+    //.. ca marche !
     for (let i in utilisateurs){ 
             
         if (utilisateurs[i].Nom.toLowerCase() === rsearch.toLowerCase()){
@@ -71,8 +63,15 @@ searchButton.addEventListener('click', function(event){
         }
         
     };
-
     console.log("--------------------------------------");
+
+    // filterText function
+    const filterText =(arr, requete) => {
+        return arr.filter((el) => el.find(requete));
+    };
+    console.log("filterText(utilisateurs, rsearch) = "+filterText(utilisateurs, rsearch));
+    console.log("--------------------------------------");
+
 
     // a ajouter .starwith .tolowercase
     utilisateurs.forEach(function (item) {
