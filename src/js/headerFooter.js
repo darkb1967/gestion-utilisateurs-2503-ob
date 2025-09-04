@@ -28,12 +28,13 @@ function createHeader(){
 
     // Ajouter les liens dans la barre de navigation
     const links = [
-      { href: './index.html', text: 'Accueil' },
+      { href: './accueil.html', text: 'Accueil' },
       { href: './roles.html', text: 'Roles' },
       { href: './roles-ajouter.html', text: 'Ajouter un role' },
       { href: './utilisateurs.html', text: 'Utilisateurs' },
       { href: './utilisateurs-ajouter.html', text: 'Ajouter un utilisateur' },
-      { href: './profil.html', text: 'Profil' }
+      { href: './profil.html', text: 'Profil' },
+      { href: './index.html', text: 'Log Out' }
     ];
 
     // Créer chaque lien et les ajouter à la barre de navigation
