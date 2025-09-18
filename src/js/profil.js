@@ -28,33 +28,13 @@ searchButton.addEventListener('click', function(event){
     event.preventDefault();
 
     const rsearch = search.value;
-    //let nameFilter = utilisateurs.filter((util) => util.Nom === rsearch);
-    let nameObject =Object.entries(utilisateurs).filter(item => item.Nom === rsearch);
 
-    console.log("recherche du mot = "+rsearch+" et trouve Object.entries(utilisateurs) = "+nameObject);
-    console.log("--------------------------------------");
-
-    //filter from utilisateurs 
-    let nameFilter =utilisateurs.filter(item => item.Nom.matchAll(rsearch));
-
-    console.log("recherche du mot = "+rsearch+" et trouve utilisateurs.filter(item => item.Nom) = "+nameFilter);
-    console.log("--------------------------------------");
-
-    console.log("Object.key = "+Object.keys(utilisateurs));
-    console.log("--------------------------------------");
-
-    let util = Object.values(utilisateurs);
-    console.log("Object.values = "+util);
-    console.log("--------------------------------------");
-
-    console.log("Object.entries = "+Object.entries(utilisateurs));
-    console.log("--------------------------------------");
-
-    
     //.. ca marche !
+    // #todo: const results = jsonData.filter(item => item.nom.toLowerCase().includes(searchTerm.toLowerCase()));
     for (let i in utilisateurs){ 
             
-        if (utilisateurs[i].Nom.toLowerCase() === rsearch.toLowerCase()){
+        //if (utilisateurs[i].Nom.toLowerCase() === rsearch.toLowerCase()){
+        if (utilisateurs[i].Nom.toLowerCase().includes(rsearch.toLowerCase())){
            console.log("nom du for in = "+rsearch+" utilisateur = "+utilisateurs[i].Nom);
             element = i;
             console.log('objectkeys de element = '+element);
@@ -65,15 +45,22 @@ searchButton.addEventListener('click', function(event){
     };
     console.log("--------------------------------------");
 
-    // filterText function
-    const filterText =(arr, requete) => {
-        return arr.filter((el) => el.find(requete));
-    };
-    console.log("filterText(utilisateurs, rsearch) = "+filterText(utilisateurs, rsearch));
+    //utilisation de .filter pour le resultat et transformer en string
+    const results = utilisateurs.filter(item => item.Nom.toLowerCase().includes(rsearch.toLowerCase()));
+    console.log("filterText(utilisateurs, rsearch) = ", results);
+    console.log("filterText(utilisateurs, rsearch) = " + JSON.stringify(results, null, 2));
+
+    results.forEach(item => {
+    console.log(`nom = "${rsearch}"  →  résultat = "${item.Nom}"`);
+    console.log("Object.key = "+Object.keys(item.Nom));
     console.log("--------------------------------------");
 
 
+    });
+ 
+
     // a ajouter .starwith .tolowercase
+ 
     utilisateurs.forEach(function (item) {
         if (item.Nom.toLowerCase() === rsearch.toLowerCase()) {
            console.log("trouvé for each = ", item);}
