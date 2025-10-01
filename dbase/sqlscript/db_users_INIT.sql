@@ -53,6 +53,12 @@ VALUES
 ('celine@example.com', 		'dion', 		'celine', 	'rené', 		2);
 
 
+INSERT INTO t_user 
+(user_email, user_lastname, user_firstname, user_password, role_id) 
+VALUES 
+('a@a.fr', 						'toto', 		'tata', 		'1234', 		2),
+('ab@a.fr',				 		'totob', 	'tatab', 	'1234', 		1);
+
 /*
 LMD : Langage de Modélisation des données 
 4 instructions :
@@ -74,11 +80,11 @@ role_d role_level
 3 -> 10
 */
 
-UPDATE t_role  role_level=0 WHERE role_id=1;
+UPDATE t_role set role_level=0 WHERE role_id=1;
 
-UPDATE t_role  role_level=9 WHERE role_id=2;
+UPDATE t_role set role_level=9 WHERE role_id=2;
 
-UPDATE t_role  role_level=10 WHERE role_id=3;
+UPDATE t_role set role_level=10 WHERE role_id=3;
 
 /* ajouter les rôles suivants :
 

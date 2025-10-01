@@ -22,7 +22,7 @@ EXPOSE 3306
 # docker run -d -p 3310:3306 --name gestion-utilisateurs-database  darkb1967/gestion-utilisateurs-database:1.0
 
 ## construire un contenaire avec volume
-# ?? docker run -d -p 3310:3306 -v gestion-utilisateurs-data:/var/lib/mysql --name gestion-utilisateurs-database darkb1967/gestion-utilisateurs-database:1.0
+# docker run -d -p 3310:3306 -v gestion-utilisateurs-data:/var/lib/mysql --name gestion-utilisateurs-database darkb1967/gestion-utilisateurs-database:1.0
 # docker run -d -p 3310:3306 -v gestion-utilisateur-data:/var/lib/mysql darkb1967/gestion-utilisateurs-database:1.0
 
 ## entre dans le contenaire dans le bash
