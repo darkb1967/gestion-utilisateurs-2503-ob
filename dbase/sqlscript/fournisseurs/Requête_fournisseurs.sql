@@ -63,8 +63,18 @@ GROUP BY codeA;
  INNER JOIN fournisseurs on fournisseurs.codeF = ligne_bon_de_livraison.codeF
  INNER JOIN rayon ON rayon.nomR = articles.nomR
  INNER JOIN employe ON employe.nomR = rayon.nomR
- GROUP BY articles.codeA;
+ -- GROUP BY articles.codeA;
  -- GROUP BY rayon.nomR;
+ 
+ /* correction -- GROUP BY articles.codeA; */
+ 
+ SELECT articles.codeA AS codeArticle, nomA AS nomArticle, GROUP_CONCAT(nomF) AS nom_fournisseurs, rayon.nomR AS nomRayon, etage, codeEmpl, nom AS nomFournisseurs
+ FROM articles
+ INNER JOIN ligne_bon_de_livraison ON ligne_bon_de_livraison.codeA = articles.codeA
+ INNER JOIN fournisseurs on fournisseurs.codeF = ligne_bon_de_livraison.codeF
+ INNER JOIN rayon ON rayon.nomR = articles.nomR
+ INNER JOIN employe ON employe.nomR = rayon.nomR
+ GROUP BY codeArticle;
  
  /* 7 (4 sur dépot). Sélectionner le nom des produits, leur prix, et le nom du fournisseur associé */
  SELECT nomA, prix, nomf
@@ -79,6 +89,15 @@ INNER JOIN ligne_bon_de_livraison AS TL ON TL.codeA = TA.codeA
 INNER JOIN fournisseurs AS TF ON TL.codeF = TF.codeF
 WHERE prix > (SELECT AVG(prix) FROM articles);
 
+/* alias exemple */
+SELECT
+codeA AS codeArticle,
+nomA 'nomArticle',
+`type`,
+nomR,
+prix
+FROM `articles`
+ORDER BY codeA DESC;
 
 
 

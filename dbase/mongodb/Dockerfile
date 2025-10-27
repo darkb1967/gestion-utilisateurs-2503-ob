@@ -25,3 +25,5 @@ EXPOSE 27017
 # db.people.find()
 # db.stats()
 # show dbs
+
+# mongodb://olive:1234@localhost:4005/ # mongodb compass connexion

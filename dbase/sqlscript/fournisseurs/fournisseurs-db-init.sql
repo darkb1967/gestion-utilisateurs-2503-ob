@@ -114,3 +114,26 @@ INSERT INTO ligne_bon_de_livraion VALUES
 ('FBCDEF', 'A0000010', '4'),
 ('FCDEFG', 'A0000001', '12'),
 ('FDEFGH', 'A0000002', '8');
+
+/* ajouter une colonne a article */
+ALTER table articles ADD COLUMN prix DECIMAL (5,2) NOT NULL DEFAULT '0';
+-- ALTER TABLE articles DROP COLUMN prix;
+	
+
+/* mise a jour des prix */
+UPDATE articles set prix=120 WHERE codeA='A0000001';
+UPDATE articles set prix=50 WHERE codeA='A0000002';
+UPDATE articles set prix=10 WHERE codeA='A0000003';
+UPDATE articles set prix=1 WHERE codeA='A0000004';
+UPDATE articles set prix=12 WHERE codeA='A0000005';
+UPDATE articles set prix=500 WHERE codeA='A0000006';
+UPDATE articles set prix=20 WHERE codeA='A0000007';
+UPDATE articles set prix=40 WHERE codeA='A0000008';
+UPDATE articles set prix=1.5 WHERE codeA='A0000009';
+UPDATE articles set prix=3 WHERE codeA='A0000010';
+
+-- ALTER TABLE ligne_bon_de_livraion RENAME ligne_bon_de_livraison;
+
+SHOW TABLES;
+
+SHOW PROCEDURE STATUS;
