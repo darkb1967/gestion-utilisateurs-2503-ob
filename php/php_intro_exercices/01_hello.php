@@ -1,13 +1,27 @@
 
 <?php
 /**
-* affiche "Hello World"
-*/
+ * retourne "hello $name"
+ * @param string $name le nom à afficher
+ */
 
-function helloWorld(): void 
+function hello(string $name) : string
 {
-    echo "hello World !";
+    return 'hello'.$name;
 }
 
-// test de la fonction (la fonction affiche directement le résultat)
-helloWorld();
+// test de la fonction
+ echo hello(" Oliver\n");
+
+ function hello2(string $name2) : string
+ {
+
+    if ($name2 == null){
+        return "hello nobody\n";
+    } else {
+        return "hello $name2\n";
+    }
+
+ }
+
+  echo hello2("");
