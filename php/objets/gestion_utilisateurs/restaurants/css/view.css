@@ -1,4 +1,5 @@
 /* view.css */
+
 table th, table td {
     font-size: 1.7em; /* This targets specifically table header and data cells */
 }
@@ -59,4 +60,12 @@ caption {
 .button-link:hover {
     background-color: #5f9eac; /* Change background on hover */
     color: #ffef90; /* Change text color on hover for contrast */
+}
+
+#search {
+	display: flex;
+	align-items:center;
+	align-content: center;
+	justify-content: flex-start;
+
 }

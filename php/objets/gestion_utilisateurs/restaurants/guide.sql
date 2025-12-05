@@ -1,8 +1,16 @@
+
 DROP DATABASE IF EXISTS guide;
 
 CREATE DATABASE IF NOT EXISTS guide;
 
 USE guide;
+
+CREATE TABLE db_users
+(
+	users_id INT PRIMARY KEY AUTO_INCREMENT,
+	users_name VARCHAR (50),
+	users_password VARCHAR(255)
+);
 
 CREATE TABLE restaurants 
 (
@@ -14,6 +22,8 @@ CREATE TABLE restaurants
     note DOUBLE NOT NULL,
     visite DATE NOT NULL  
 );
+
+ALTER TABLE restaurants AUTO_INCREMENT=1;
 
 INSERT INTO `restaurants` (`nom`, `adresse`, `prix`, `commentaire`, `note`, `visite`) VALUES
 ('Le Coin des Saveurs', '12 Avenue des Lilas, 68100 Mulhouse', 32.90, 'Cuisine française généreuse, service impeccable et cadre chaleureux.', 7, '2021-04-12'),
@@ -38,3 +48,10 @@ DELIMITER ;
 
 SET @note_limite:=9;
 CALL afficherlistenote(@note_limite);
+
+ALTER TABLE restaurants ADD CONSTRAINT ck_note CHECK (note BETWEEN 0 AND 10);
+
+
+SELECT * FROM restaurants WHERE nom LIKE '%ober%' OR adresse LIKE '%ober%' OR commentaire LIKE '%ober%';
+
+        

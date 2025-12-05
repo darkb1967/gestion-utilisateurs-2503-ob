@@ -41,15 +41,15 @@ if (isset($_POST['register'])) {
         exit;
     }
 
-    // Secure password handling
+    // Securiser le mot de passe
     $hashedPassword = password_hash($users_password, PASSWORD_DEFAULT);
 
-    // Prepared statement to prevent SQL injection
+
     try {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "INSERT INTO db_users (users_name, users_password) VALUES (:users_name, :users_password)";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':users_name', $users_name); // Use $users_name instead of $username
+        $stmt->bindParam(':users_name', $users_name);
         $stmt->bindParam(':users_password', $hashedPassword);
         $stmt->execute();
 

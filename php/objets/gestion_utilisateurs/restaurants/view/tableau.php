@@ -6,6 +6,7 @@ function afficherTableau(array $data): string
     // table headers
     foreach (array_keys($data[0]) as $colonne) {
         $chainesHtml .= "<th>" . htmlspecialchars($colonne) . "</th>";
+        
     }
     
     $chainesHtml .= "<th>Modifier</th><th>Supprimer</th>";
@@ -16,7 +17,7 @@ function afficherTableau(array $data): string
         $chainesHtml .= "<tr>";
         
         foreach ($ligne as $cellule) {
-            $chainesHtml .= "<td>" . $cellule . "</td>";
+            $chainesHtml .= "<td>" .htmlspecialchars($cellule)  . "</td>";
         }
 
         if (isset($ligne['id'])) {

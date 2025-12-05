@@ -38,7 +38,7 @@ class RestaurantRepository{
     }
 
     public function searchByName2(string $_name){
-        $rq = "Select nom, adresse, prix, commentaire, note, visite from restaurants where nom LIKE :nom";
+        $rq = "Select id, nom, adresse, prix, commentaire, note, DATE_FORMAT(visite, \"%d/%m/%Y\") as \"date visite\" from restaurants where nom LIKE :nom";
         $PDOstmt = $this->dbConnect->prepare($rq);
         $like = '%' . $_name . '%';
         $PDOstmt->bindValue(":nom", $like, PDO::PARAM_STR);
@@ -53,6 +53,54 @@ class RestaurantRepository{
         $PDOstmt = $this->dbConnect->prepare($rq);
         $PDOstmt->execute([":nom", $_name]);
         $data=$PDOstmt->fetchAll();
+        return $data;
+    }
+
+    public function searchByTerm($term) {
+        /* old date 2525-02-15
+        $rq = "Select id, nom, adresse, prix, commentaire, note, DATE_FORMAT(visite, \"%d/%m/%Y\") as \"date_visite\" FROM restaurants WHERE nom LIKE :term OR adresse LIKE :term OR prix LIKE :term OR commentaire LIKE :term OR note LIKE :term OR visite LIKE :term";
+        $PDOstmt = $this->dbConnect->prepare($rq);
+        $likeTerm = '%' . $term . '%';
+        $PDOstmt->bindParam(':term', $likeTerm, PDO::PARAM_STR);
+        $PDOstmt->execute();
+        $data=$PDOstmt->fetchAll();
+        //$PDOstmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+        */
+        
+        // Check if the term is a date in DD/MM/YYYY format
+        $date = DateTime::createFromFormat('d/m/Y', $term);
+        $dateMatched = false;
+
+        if ($date) {
+            // If it's a valid date, convert it to YYYY-MM-DD format
+            $term = $date->format('Y-m-d');
+            $dateMatched = true;
+        }
+
+        $rq = "SELECT id, nom, adresse, prix, commentaire, note, DATE_FORMAT(visite, \"%d/%m/%Y\") as date_visite 
+                FROM restaurants 
+                WHERE nom LIKE :term OR adresse LIKE :term OR prix LIKE :term OR commentaire LIKE :term OR note LIKE :term";
+
+        // If it is a date, add a specific condition to check for the 'visite' date
+        if ($dateMatched) {
+            $rq .= " OR visite = :dateTerm";
+        }
+
+        $PDOstmt = $this->dbConnect->prepare($rq);
+
+        // Prepare a parameter for LIKE searches
+        $likeTerm = '%' . $term . '%';
+        $PDOstmt->bindParam(':term', $likeTerm, PDO::PARAM_STR);
+
+        // Bind the date param only if it's a valid date
+        if ($dateMatched) {
+            $PDOstmt->bindParam(':dateTerm', $term, PDO::PARAM_STR);
+        }
+
+        $PDOstmt->execute();
+        $data = $PDOstmt->fetchAll();
+
         return $data;
     }
 

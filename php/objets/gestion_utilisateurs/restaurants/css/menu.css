@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Lato:300,400,700');
-html, body, h1, h2, h3, h4, h5, h6, p, li, ol, ul, pre {
-	margin: 0;
+html, body, p, li, ol, ul, pre {
+	margin: 30px;
 	padding: 0;
 }
+
+
 html, body { min-height: 100%; }
 
 body {
@@ -14,7 +16,7 @@ body {
 	padding: 0 20px;
 	box-sizing: border-box;
 }
-p{
+p {
 	display: flex;
 	align-items: center;
 	align-content: center;

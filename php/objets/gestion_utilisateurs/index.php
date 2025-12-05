@@ -22,6 +22,7 @@
 
         <ul class="menu-list">
             <li><a href="./restaurants/index.php">Restaurant</a></li>
+            <li><a href="./tp_backend_auth/index.php">Foire vin Colmar</a></li>
             <li><a href="../impot_revenu/index.php">Impot</a></li>
             <li><a href="../vehicules/index.php">Véhicules</a></li>
         </ul>

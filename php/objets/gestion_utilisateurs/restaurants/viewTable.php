@@ -11,13 +11,14 @@
     <?php
         require_once "./view/header.php"
     ?>
+    <h1>Liste des critiques des restaurants</h1>
+    	<form action = "#" method = "GET" id="search">
+		    <input type = "search" name = "terme">
+		    <input type = "submit" name = "search" value = "Rechercher dans la liste">
+		</form>
 
     <main class="cadre">
-                    
-        <h1>Liste des restaurants</h1>
-
         <section>
-
 
             <div id="mytable"><?php
                 require "./dao/Dbconnexion.php";
@@ -25,9 +26,26 @@
                 require "./view/tableau.php"; 
 
                 $objResto = new RestaurantRepository();
-                $data = $objResto->searchAll();
                 
-               
+                // ternaire
+                $terme = isset($_GET['terme']) ? htmlspecialchars($_GET['terme']) : null;
+
+                $data = (isset($terme) && !empty($terme)) ? $objResto->searchByTerm($terme) : $objResto->searchAll();
+                
+
+                
+                // ancien code avec if
+                /*
+                $terme = $_GET['terme'];
+
+                if (empty($terme)) {
+                    $data = $objResto->searchAll();
+                } else {
+                    //$data=$objResto->searchByName2($terme); // recherche dans un seul champ
+                    $data=$objResto->searchByTerm($terme);
+                }
+                */
+    
                 if ($data && count($data) > 0) {
                     echo afficherTableau($data); 
                 } else {
