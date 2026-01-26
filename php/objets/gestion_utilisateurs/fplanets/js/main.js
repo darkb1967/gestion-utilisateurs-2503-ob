@@ -31,7 +31,7 @@ function insertTitleCell(row, value) {
 
 
 const apiUrl = "https://api.le-systeme-solaire.net/rest/bodies/terre";
-
+const token = "xxx-xxx-xxx"; // Replace this with your actual token
 
 fetch(apiUrl, {
     method: "GET",  // Specify the method if necessary
